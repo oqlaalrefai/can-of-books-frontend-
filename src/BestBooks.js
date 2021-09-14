@@ -3,6 +3,7 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import BookFormModel from "./BookFormModal";
+import UpdateBook from './component/UpdateBook';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -12,6 +13,8 @@ export class BestBooks extends React.Component {
     this.state = {
       Books: [],
       displayModel: false,
+      showUpdateModal: false,
+      selectedBookDataObj: {}
     };
   }
 
@@ -21,11 +24,7 @@ export class BestBooks extends React.Component {
     });
   };
 
-  // handleClose = () => {
-  //   this.setState({
-  //     displayModel: this.state.displayModel,
-  //   });
-  // };
+
   componentDidMount = () => {
     axios
       .get(`${REACT_APP_SERVER_URL}/books`)
@@ -53,6 +52,47 @@ export class BestBooks extends React.Component {
       })
       .catch(() => alert("something went Wrong"));
   };
+  handelUpdateModal = (e) => {
+    e.preventDefault();
+
+    const reqBody = {
+      title: e.target.bookName.value,
+      description: e.target.bookDescription.value,
+      status: e.target.bookStatus.value,
+      email: e.target.email.value,
+  
+    };
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/book/${this.state.selectedBookDataObj._id}`, reqBody).then(updatedBookObject => {
+
+      
+
+      const updateBookArr = this.state.BooksData.map(book => {
+
+
+        if (book._id === this.state.selectedBookDataObj._id) {
+          book = updatedBookObject.data
+
+          return book;
+        }
+
+        return book;
+
+      });
+
+      this.setState({
+        BooksData: updateBookArr,
+        selectedBookDataObj: {}
+      })
+
+
+
+      this.handelDisplayUpdateModal(); // hide the update modal
+
+    }).catch(() => alert("Something went wrong!"));
+  
+
+  }
+
   handelDeleteBook = (bookId) => {
     axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/books/${bookId}`)
@@ -81,6 +121,17 @@ export class BestBooks extends React.Component {
 
         />
         
+        }
+        {
+          this.state.showUpdateModal &&
+          <>
+            <UpdateBook
+              show={this.state.showUpdateModal}
+              handelUpdateModal={this.handelUpdateModal}
+              handelDisplayUpdateModal={this.handelDisplayUpdateModal}
+              selectedBookDataObj={this.state.selectedBookDataObj}
+            />
+          </>
         }
         
         {this.state.Books.length > 0 &&
