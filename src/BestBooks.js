@@ -17,6 +17,13 @@ export class BestBooks extends React.Component {
       selectedBookDataObj: {}
     };
   }
+  handelDisplayUpdateModal=(DataBookobject)=>{
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      selectedBookDataObj:DataBookobject
+
+    });
+  }
 
   displayModel = () => {
     this.setState({
@@ -62,11 +69,11 @@ export class BestBooks extends React.Component {
       email: e.target.email.value,
   
     };
-    axios.put(`${process.env.REACT_APP_SERVER_URL}/book/${this.state.selectedBookDataObj._id}`, reqBody).then(updatedBookObject => {
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/books/${this.state.selectedBookDataObj._id}`, reqBody).then(updatedBookObject => {
 
       
 
-      const updateBookArr = this.state.BooksData.map(book => {
+      const updateBookArr = this.state.Books.map(book => {
 
 
         if (book._id === this.state.selectedBookDataObj._id) {
@@ -80,11 +87,11 @@ export class BestBooks extends React.Component {
       });
 
       this.setState({
-        BooksData: updateBookArr,
+        Books: updateBookArr,
         selectedBookDataObj: {}
       })
 
-
+console.log(this.state.selectedBookDataObj);
 
       this.handelDisplayUpdateModal(); // hide the update modal
 
@@ -151,6 +158,12 @@ export class BestBooks extends React.Component {
                       onClick={() => this.handelDeleteBook(element._id)}
                     >
                       Delete Book
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => this.handelDisplayUpdateModal(element)}
+                    >
+                      Update Book
                     </Button>
                   </Card>
                 </>
