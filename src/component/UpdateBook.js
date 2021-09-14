@@ -15,19 +15,19 @@ export class UpdateBook extends Component {
           <Form onSubmit={this.props.handelUpdateModal}>
             <Form.Group className="mb-3">
               <Form.Label>Book Name</Form.Label>
-              <Form.Control type="text" name="bookName" placeholder="Enter Book Name" defaultValue={this.props.selectedBookDataObj.bookName} />
+              <Form.Control type="text" name="bookName" placeholder="Enter Book Name" defaultValue={this.props.selectedBookDataObj.title} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Book Description</Form.Label>
-              <Form.Control type="text" name="bookDescription" placeholder="Enter Book Description" defaultValue={this.props.selectedBookDataObj.bookDescription} />
+              <Form.Control type="text" name="bookDescription" placeholder="Enter Book Description" defaultValue={this.props.selectedBookDataObj.description} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Book Status</Form.Label>
-              <Form.Control type="text" name="bookStatus" placeholder="Enter Book Status" defaultValue={this.props.selectedBookDataObj.bookStatus} />
+              <Form.Control type="text" name="bookStatus" placeholder="Enter Book Status" defaultValue={this.props.selectedBookDataObj.status} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="text" name="email" placeholder="Enter Email " defaultValue={this.props.selectedBookDataObj.bookStatus} />
+              <Form.Control type="text" name="email" placeholder="Enter Email " defaultValue={this.props.selectedBookDataObj.email} />
             </Form.Group>
             <Button variant="primary" type="submit">
               Update!
