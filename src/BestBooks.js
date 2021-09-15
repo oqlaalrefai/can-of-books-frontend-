@@ -4,6 +4,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import BookFormModel from "./BookFormModal";
 import UpdateBook from './component/UpdateBook';
+import { withAuth0 } from '@auth0/auth0-react';
+
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -176,4 +178,4 @@ console.log(this.state.selectedBookDataObj);
     );
   }
 }
-export default BestBooks;
+export default withAuth0(BestBooks);

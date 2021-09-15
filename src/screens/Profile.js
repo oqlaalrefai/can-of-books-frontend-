@@ -6,7 +6,7 @@ class Profile extends Component {
     const user = this.props.auth0.user;
     return (
       <div>
-        <img src={user.picture} alt="" />
+        <img src={user.picture} alt="Hanin" />
         <p>{user.email}</p>
         <p>{user.name}</p>
       </div>
