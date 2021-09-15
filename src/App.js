@@ -1,25 +1,51 @@
+"use strict";
 import React from "react";
-import BestBooks from "./BestBooks";
+import Header from "./Header";
+import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Profile from './screens/Profile'
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { withAuth0 } from "@auth0/auth0-react";
+import BestBooks from "./BestBooks";
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+  }
+
+  loginHandler = (user) => {
+    this.setState({
+      user,
+    });
+  };
+
+  logoutHandler = () => {
+    this.setState({
+      user: null,
+    });
+  };
+
   render() {
+    const isAuth = this.props.auth0.isAuthenticated;
     return (
-      <div>
-        {/* <Router>
+      <>
+        <Router>
+          <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
-            <Route exact path="/"></Route>
+            <Route exact path="/">
+              {isAuth ? <BestBooks /> : <Login />}
+            </Route>
+            <Route exact path="/profile">
+              {isAuth && <Profile />}
+            </Route>
           </Switch>
-          <Switch>
-            <Route exact path="/Profile"></Route>
-            <Profile/>
-          </Switch>
-        </Router> */}
-        <BestBooks />
-      </div>
+          <Footer />
+        </Router>
+      </>
     );
   }
 }
 
-export default App;
+export default withAuth0(App);
