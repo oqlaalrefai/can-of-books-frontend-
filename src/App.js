@@ -3,10 +3,10 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from './component/Header'
+import Login from './component/Login'
+// import Profile from './screens/Profile'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { withAuth0 } from "@auth0/auth0-react";
-import BestBooks from "./BestBooks";
-
 class App extends React.Component {
   constructor(props) {
     super(props);

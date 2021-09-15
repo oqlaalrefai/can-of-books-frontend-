@@ -1,14 +1,17 @@
-import React from "react";
-//from login.js
-class Profile extends React.Component {
-  render() {
-    return (
+import { Component } from "react";
+import { withAuth0 } from '@auth0/auth0-react';
+class Profile extends Component {
 
-          <>
-            <div>Hello </div>
-            <div>email </div>
-          </>
-    );
+  render() {
+    const user = this.props.auth0.user;
+    return (
+      <div>
+        <img src={user.picture} alt="" />
+        <p>{user.email}</p>
+        <p>{user.name}</p>
+      </div>
+    )
   }
-}
-export default Profile;
+};
+
+export default withAuth0(Profile);
