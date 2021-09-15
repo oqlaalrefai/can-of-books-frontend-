@@ -30,15 +30,15 @@ class BookFormModel extends React.Component {
                 <Form.Label>Your Email</Form.Label>
                 <Form.Control type="text" name="email" />
               </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Books image</Form.Label>
+                <Form.Control type="text" name="img" />
+              </Form.Group>
               <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Form>{" "}
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary">Close</Button>
-            <Button variant="primary">Save changes</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
