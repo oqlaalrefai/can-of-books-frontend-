@@ -36,7 +36,7 @@ export class BestBooks extends React.Component {
 
   componentDidMount = () => {
     axios
-      .get(`${REACT_APP_SERVER_URL}/books`)
+      .get(`${REACT_APP_SERVER_URL}/books/${this.props.auth0.user.email}`)
       .then((bookResponse) => {
         this.setState({ Books: bookResponse.data });
       })

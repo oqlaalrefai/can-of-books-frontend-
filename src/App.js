@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from "react";
 import Footer from "./component/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
