@@ -1,21 +1,24 @@
 import React from "react";
 import BestBooks from "./BestBooks";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from './component/Header'
+import Login from './component/Login'
 // import Profile from './screens/Profile'
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Router>
+        {<Router>
           <Switch>
             <Route exact path="/"></Route>
           </Switch>
           <Switch>
-            <Route exact path="/Profile"></Route>
-            <Profile/>
+            <Route exact path="/Login"> </Route>
+            <Login/>
           </Switch>
-        </Router> */}
+        </Router> }
+       
         <BestBooks />
       </div>
     );
