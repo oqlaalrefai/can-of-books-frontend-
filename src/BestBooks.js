@@ -116,7 +116,6 @@ export class BestBooks extends React.Component {
     return (
       <div>
         <Button variant="danger" onClick={this.displayModel}>
-          {" "}
           ADD Book
         </Button>
         {this.state.displayModel && (
