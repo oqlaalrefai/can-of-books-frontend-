@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import BookFormModel from "./BookFormModal";
 import UpdateBook from "./component/UpdateBook";
 import { withAuth0 } from "@auth0/auth0-react";
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from "react-bootstrap/Carousel";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -36,8 +36,7 @@ export class BestBooks extends React.Component {
       .get(`${REACT_APP_SERVER_URL}/books/${this.props.auth0.user.email}`)
       .then((bookResponse) => {
         this.setState({ Books: bookResponse.data });
-        console.log(this.state.Books)
-
+        console.log(this.state.Books);
       })
       .catch((error) => alert("the book collection is empty."));
   };
@@ -49,7 +48,7 @@ export class BestBooks extends React.Component {
       description: e.target.bookDescription.value,
       status: e.target.bookStatus.value,
       email: e.target.email.value,
-      img:e.target.img.value
+      img: e.target.img.value,
     };
 
     axios
@@ -58,7 +57,6 @@ export class BestBooks extends React.Component {
         this.state.Books.push(respondBooks.data);
         this.setState({ Books: this.state.Books });
         this.displayModel();
-
       })
       .catch(() => alert("something went Wrong"));
   };
@@ -70,8 +68,7 @@ export class BestBooks extends React.Component {
       description: e.target.bookDescription.value,
       status: e.target.bookStatus.value,
       email: e.target.email.value,
-      img:e.target.img.value
-
+      img: e.target.img.value,
     };
     axios
       .put(
@@ -118,6 +115,10 @@ export class BestBooks extends React.Component {
   render() {
     return (
       <div>
+        <Button variant="danger" onClick={this.displayModel}>
+          {" "}
+          ADD Book
+        </Button>
         {this.state.displayModel && (
           <BookFormModel
             show={this.state.displayModel}
@@ -136,12 +137,10 @@ export class BestBooks extends React.Component {
           </>
         )}
         {this.state.Books.length > 0 && (
-
           <>
-        
-          <Carousel>
-            {this.state.Books.map((element) => {
-              return (
+            <Carousel>
+              {this.state.Books.map((element) => {
+                return (
                   <Carousel.Item>
                     <img
                       className="d-block w-100"
@@ -150,42 +149,27 @@ export class BestBooks extends React.Component {
                     />
                     <Carousel.Caption>
                       <h3>{element.title}</h3>
-                      <p>
-                      {element.description}
-                      </p>
-                      <p>
-                      {element.status}
-                      </p>
-                      <p>
-                      {element.email}
-                      </p>
+                      <p>{element.description}</p>
+                      <p>{element.status}</p>
+                      <p>{element.email}</p>
                       <Button
-                    variant="danger"
-                    onClick={() => this.handelDeleteBook(element._id)}
-                  >
-                    Delete Book
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => this.handelDisplayUpdateModal(element)}
-                  >
-                    Update Book
-                  </Button>
-                  <Button 
-                    variant="danger"
-                  onClick={this.displayModel}> ADD Book</Button>
-
+                        variant="danger"
+                        onClick={() => this.handelDeleteBook(element._id)}
+                      >
+                        Delete Book
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => this.handelDisplayUpdateModal(element)}
+                      >
+                        Update Book
+                      </Button>
                     </Carousel.Caption>
                   </Carousel.Item>
-
-              );
-
-            })}
-          
-          </Carousel>
-
+                );
+              })}
+            </Carousel>
           </>
-
         )}
         ​
       </div>
