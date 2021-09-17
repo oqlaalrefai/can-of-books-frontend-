@@ -51,6 +51,15 @@ export class UpdateBook extends Component {
                 defaultValue={this.props.selectedBookDataObj.email}
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Books image</Form.Label>
+                <Form.Control
+                 type="text"
+                  name="img"
+                  defaultValue={this.props.selectedBookDataObj.img}
+                  />
+              </Form.Group>
+
             <Button variant="primary" type="submit">
               Update!
             </Button>
